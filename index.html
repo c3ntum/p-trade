@@ -1,183 +1,343 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prinz Trade & E-Commerce – Import | Handel | E-Commerce (Basel)</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prinz Trade & E-Commerce – Import, Autopflege & B2B</title>
+
+  <!-- Moderne Schrift -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    :root {
-      --primary-color: #004080;
-      --secondary-color: #f2f8ff;
-      --text-color: #333333;
-      --accent-color: #0066cc;
-      --footer-bg: #222222;
-      --footer-text: #aaaaaa;
-    }
     body {
       margin: 0;
-      padding: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      color: var(--text-color);
-      line-height: 1.6;
+      background: #0d0d0d;
+      color: #e5e5e5;
+      font-family: "Inter", sans-serif;
+      overflow-x: hidden;
     }
-    header {
-      background: var(--primary-color);
-      color: white;
-      padding: 20px 10px;
+
+    h1, h2, h3 { margin: 0; font-weight: 600; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ===== COLORS ===== */
+    :root {
+      --neon: #005BEA; /* Infomaniak Deep Blue */
+      --neon-soft: rgba(255,255,255,0.35); /* softer Weiß-Glow */
     }
-    header .container {
-      max-width: 1100px;
-      margin: 0 auto;
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 200;
+
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+
+      padding: 18px 40px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
     }
-    header .logo {
-      font-size: 1.5em;
-      font-weight: bold;
+
+    .logo img {
+      height: 45px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 0 6px var(--neon-soft));
     }
+
     nav ul {
       list-style: none;
+      display: flex;
+      gap: 30px;
       padding: 0;
       margin: 0;
-      display: flex;
     }
-    nav li {
-      margin-left: 20px;
-    }
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .hero {
-      background: var(--secondary-color);
-      padding: 80px 10px;
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: 2.5em;
-      margin-bottom: 15px;
-    }
-    .hero p {
-      font-size: 1.2em;
-      max-width: 800px;
-      margin: 0 auto;
-      color: var(--text-color);
-    }
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 10px;
-    }
-    .services {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-    }
-    .service {
-      flex: 1 1 300px;
-      background: white;
-      padding: 30px;
-      border: 1px solid #e0e0e0;
+
+    nav ul li a {
+      padding: 10px 14px;
       border-radius: 8px;
-      transition: transform .3s, box-shadow .3s;
+      transition: 0.3s ease;
     }
-    .service:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+
+    nav ul li a:hover {
+      background: rgba(255,255,255,0.12);
     }
-    .service h3 {
-      margin-top: 0;
-      color: var(--accent-color);
+
+    .header-spacer { height: 95px; }
+
+    /* ==== MOBILE MENU ==== */
+    .mobile-menu-icon {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
     }
-    footer {
-      background: var(--footer-bg);
-      color: var(--footer-text);
-      text-align: center;
-      padding: 30px 10px;
-    }
-    footer a {
-      color: var(--footer-text);
-      text-decoration: none;
-    }
-    @media (max-width: 768px) {
+
+    @media(max-width: 850px) {
       nav ul {
+        position: absolute;
+        top: 78px;
+        right: 0;
+        width: 100%;
         flex-direction: column;
-        align-items: center;
+        text-align: center;
+
+        background: rgba(0,0,0,0.95);
+        backdrop-filter: blur(12px);
+
+        display: none;
+        padding: 20px 0;
       }
-      nav li {
-        margin: 10px 0;
-      }
-      .hero h1 {
-        font-size: 2em;
-      }
+
+      nav ul.show { display: flex; }
+
+      nav ul li { padding: 15px 0; }
+
+      .mobile-menu-icon { display: block; }
+    }
+
+    /* ==== HERO HEADER WITH BLUR FADE ==== */
+    .hero-header {
+      position: relative;
+      width: 100%;
+      height: 420px;
+
+      background-image: url('https://images.pexels.com/photos/799443/pexels-photo-799443.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+    }
+
+    .hero-header::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 55%;
+      background: linear-gradient(
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0.2) 20%,
+        rgba(0,0,0,0.55) 60%,
+        #0d0d0d 100%
+      );
+      backdrop-filter: blur(4px);
+    }
+
+    /* ==== HERO TEXT ==== */
+    .hero {
+      text-align: center;
+      padding: 50px 20px 120px;
+      max-width: 900px;
+      margin: auto;
+      margin-top: -130px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      opacity: .9;
+      margin-top: 12px;
+      text-shadow: 0 0 8px rgba(0,0,0,0.4);
+    }
+
+    /* ==== SECTIONS ==== */
+    .section { padding: 80px 20px; }
+
+    .container {
+      max-width: 1250px;
+      margin: auto;
+    }
+
+    /* ==== SOFT NEON CARDS ==== */
+    .card-grid {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 35px;
+    }
+
+    .glass-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(0, 91, 234, 0.35);
+      border-radius: 18px;
+      padding: 30px;
+
+      backdrop-filter: blur(20px);
+
+      box-shadow:
+        0 0 12px var(--neon-soft),
+        0 0 18px rgba(0, 91, 234, 0.35);
+
+      transition: 0.35s ease;
+      text-align: center;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 0 20px var(--neon-soft),
+        0 0 30px rgba(0, 91, 234, 0.45),
+        0 15px 30px rgba(0,0,0,0.45);
+      border-color: rgba(0, 91, 234, 0.55);
+    }
+
+    /* ==== ICONS ==== */
+    .card-image img {
+      height: 120px;
+      width: auto;
+      filter:
+        drop-shadow(0 0 6px var(--neon-soft))
+        drop-shadow(0 0 10px rgba(0,91,234,0.35));
+    }
+
+    footer {
+      margin-top: 80px;
+      padding: 40px 20px;
+      text-align: center;
+      background: rgba(255,255,255,0.03);
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
   </style>
 </head>
+
 <body>
 
-<header>
-  <div class="container">
-    <div class="logo">Prinz Trade & E-Commerce</div>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Leistungen</a></li>
-        <li><a href="#about">Über uns</a></li>
-        <li><a href="#contact">Kontakt</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-<section id="home" class="hero">
-  <div class="container">
-    <h1>Ihr kompetenter Partner für Import, Online-Handel & Autopflege</h1>
-    <p>Mit Sitz in Basel (Lehenmattstrasse 308, 4052 Basel) betreiben wir den Import, Groß- und Online-handel von Autopflegeprodukten und Fahrzeugzubehör. Effizient. Zuverlässig. Transparent.</p>
-  </div>
-</section>
-
-<section id="services" class="container">
-  <h2>Unsere Leistungen</h2>
-  <div class="services">
-    <div class="service">
-      <h3>Import & Zollabwicklung</h3>
-      <p>Wir übernehmen für Sie die gesamte Logistik und Zollabwicklung beim Import von Waren aus dem Ausland — damit Sie sich auf Ihr Kerngeschäft konzentrieren können.</p>
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="logo">
+      <img src="logo.png" alt="Prinz Trade Logo">
     </div>
-    <div class="service">
-      <h3>Online-Handel & E-Commerce</h3>
-      <p>Von der Konzeption bis zum Betrieb Ihres Online-Shops (z. B. Shopify) inklusive Produktpflege, Logistik und Kundenservice — wir helfen Ihnen, digital erfolgreich zu sein.</p>
+
+    <div class="mobile-menu-icon" onclick="toggleMenu()">☰</div>
+
+    <ul id="menu">
+      <li><a href="#services">Leistungen</a></li>
+      <li><a href="#brands">Shops & Marken</a></li>
+      <li><a href="#b2b">Grosskunden</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-spacer"></div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("show");
+    }
+  </script>
+
+  <!-- HEADER IMAGE -->
+  <div class="hero-header"></div>
+
+  <!-- HERO TEXT -->
+  <section class="hero">
+    <h1>Import. Autopflege. Digital Commerce.</h1>
+    <p>Wir vereinen E-Commerce, Handel und Fahrzeugpflege – für Endkunden & professionelle Geschäftspartner.</p>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="container">
+      <h2>Unsere Leistungen</h2>
+
+      <div class="card-grid">
+
+        <div class="glass-card">
+          <div class="card-image">
+            <img src="https://cdn-icons-png.flaticon.com/512/743/743131.png" alt="Car Icon">
+          </div>
+          <h3>Import & Verzollung</h3>
+          <p>Von globalen Lieferanten direkt in die Schweiz – schnell, effizient und rechtssicher.</p>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-image">
+            <img src="https://cdn-icons-png.flaticon.com/512/891/891462.png" alt="E-Commerce Icon">
+          </div>
+          <h3>E-Commerce Prozesse</h3>
+          <p>Shop-Systeme, Automatisierungen, Produktpflege und digitale Workflows.</p>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-image">
+            <img src="https://cdn-icons-png.flaticon.com/512/679/679922.png" alt="Logistics Icon">
+          </div>
+          <h3>Autopflege & Zubehör</h3>
+          <p>Distribution hochwertiger Pflegeprodukte für Fahrzeuge aller Kategorien.</p>
+        </div>
+
+      </div>
     </div>
-    <div class="service">
-      <h3>Großhandel & Distribution</h3>
-      <p>Als Händler von hochwertigen Autopflege- und Zubehörprodukten bieten wir maßgeschneiderte Lösungen für Wiederverkäufer, Werkstätten und Handelsunternehmen.</p>
+  </section>
+
+  <!-- SHOPS & MARKEN -->
+  <section class="section" id="brands">
+    <div class="container">
+      <h2>Shops & Marken</h2>
+
+      <div class="card-grid">
+        <div class="glass-card">
+          <h3>Carora.ch</h3>
+          <p>Der Schweizer Onlineshop für Autopflege & Zubehör.</p>
+          <p><strong>→ Vertrieb & Betrieb durch Prinz Trade</strong></p>
+        </div>
+
+        <div class="glass-card">
+          <h3>PantherCarShine</h3>
+          <p>Premium-Marke für professionelle Fahrzeugpflege.</p>
+          <p><strong>→ Distribution / Entwicklung / Import</strong></p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="about" class="container">
-  <h2>Über uns</h2>
-  <p>Die Firma <strong>Prinz Trade & E-Commerce</strong> ist eine Einzelunternehmung mit Sitz in Basel (UID CHE-342.396.679, HR-Nr. CH-270.1.021.760-8). :contentReference[oaicite:1]{index=1}</p>
-  <p>Unser Fokus liegt auf dem Handel mit Waren aller Art, insbesondere Autopflegeprodukten und Fahrzeug-zubehör, dem Import von Waren sowie dem Betrieb von Online-Shops und E-Commerce-Plattformen. :contentReference[oaicite:2]{index=2}</p>
-  <p>Unser Anspruch: hochwertige Produkte, klare Prozesse und ein partnerschaftlicher Ansatz — damit Sie schnell und effizient erfolgreich im Schweizer Markt agieren können.</p>
-</section>
+  <!-- B2B -->
+  <section class="section" id="b2b">
+    <div class="container">
+      <h2>Grosskunden</h2>
 
-<section id="contact" class="container">
-  <h2>Kontakt</h2>
-  <p>Haben Sie Interesse oder Fragen? Sprechen Sie uns gerne an.</p>
-  <ul>
-    <li><strong>Adresse:</strong> Lehenmattstrasse 308, 4052 Basel, Schweiz :contentReference[oaicite:3]{index=3}</li>
-    <li><strong>Telefon:</strong> [Ihre Telefonnummer einfügen]</li>
-    <li><strong>E-Mail:</strong> <a href="mailto:info@p-trade.ch">info@p-trade.ch</a></li>
-    <li><strong>UID / MWST:</strong> CHE-342.396.679 :contentReference[oaicite:4]{index=4}</li>
-  </ul>
-</section>
+      <div class="glass-card" style="margin-top: 30px;">
+        <p>Wir beliefern:</p>
+        <ul>
+          <li>Garagen & Werkstätten</li>
+          <li>Carrosserien</li>
+          <li>Aufbereiter / Detailer</li>
+          <li>Autohandel & Flotten</li>
+        </ul>
+        <p>Individuelle B2B-Konditionen und schnelle Lieferung garantiert.</p>
+      </div>
+    </div>
+  </section>
 
-<footer>
-  <p>© 2025 Prinz Trade & E-Commerce · Alle Rechte vorbehalten</p>
-  <p><a href="#impressum">Impressum & Datenschutz</a></p>
-</footer>
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2>Kontakt</h2>
+
+      <div class="glass-card" style="margin-top: 30px;">
+        <p><strong>Adresse:</strong> Lehenmattstrasse 308, 4052 Basel</p>
+        <p><strong>E-Mail:</strong> info@p-trade.ch</p>
+        <p><strong>UID:</strong> CHE-342.396.679</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Prinz Trade & E-Commerce · Alle Rechte vorbehalten
+  </footer>
 
 </body>
 </html>
